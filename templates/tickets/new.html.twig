@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+  <div class="block">
+      <h2 class="center">Creating a new ticket</h2>
+      {{ form_start(form) }}
+
+      <h2 class="tex">{{ form_label(form.title, 'Title', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.title, {'attr': {'class': 'text'}}) }}</h2>
+
+      <h2 class="tex">{{ form_label(form.project_id, 'Project id', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.project_id, {'attr': {'class': 'text'}}) }}</h2>
+
+      <h2 class="tex">{{ form_label(form.type, 'Type', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.type, {'attr': {'class': 'text'}}) }}</h2>
+
+      <h2 class="tex">{{ form_label(form.status, 'Status', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.status, {'attr': {'class': 'text'}}) }}</h2>
+
+      <h2 class="tex">{{ form_label(form.creator_id, 'Creator id', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.creator_id, {'attr': {'class': 'text'}}) }}</h2>
+
+      <h2 class="tex">{{ form_label(form.assigned, 'Assigned', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.assigned, {'attr': {'class': 'text'}}) }}</h2>
+
+      <h2 class="tex">{{ form_label(form.description, 'Description', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.description, {'attr': {'class': 'text'}}) }}</h2>
+
+      <h2 class="tex">{{ form_label(form.file, 'File', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.file, {'attr': {'class': 'text'}}) }}</h2>
+
+      <h2 class="tex">{{ form_label(form.orig_file_name, 'Orig file name', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.orig_file_name, {'attr': {'class': 'text'}}) }}</h2>
+
+
+      {{ form_widget(form.create, {'attr': {'class': 'cnopka'}}) }}
+
+      {{ form_end(form) }}
+
+  </div>
+
+{% endblock %}

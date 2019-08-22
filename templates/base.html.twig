@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/asset/css/style.css"/>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <header class="header">
+  <h1><a class="bgtr" href="projects.php">BUGTRACKING</a> <?= $_SESSION['user']->name ?>
+    <a href = "viyti.php"><img src="/asset/png/viyti.png" class="viyti"></a></h1>
+  </header>
+  <body>
+    {% block body %}{% endblock %}
+  </body>
 </html>

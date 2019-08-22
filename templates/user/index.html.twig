@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+<div class="page_block">
+    <h2 class="center">Registration in BUGTRACKING</h2>
+{{ form_start(form)}}
+
+<h2 class="tex">{{ form_label(form.username, 'Yor name', {'label_attr': {'class': ''}}) }}
+{{ form_widget(form.username, {'attr': {'class': 'big_text'}}) }}</h2>
+
+<h2 class="tex">{{ form_label(form.email, 'Email', {'label_attr': {'class': ''}}) }}
+{{ form_widget(form.email, {'attr': {'class': 'big_text'}}) }}</h2>
+
+<h2 class="tex">{{ form_label(form.password, 'Password', {'label_attr': {'class': ''}}) }}
+{{ form_widget(form.password, {'attr': {'class': 'big_text'}}) }}</h2>
+
+{{ form_widget(form.create, {'attr': {'class': 'cnopka'}}) }}
+
+{{ form_end(form)}}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block body %}
+
+<h2>Projects</h2>
+
+<a href="{{path('projects/new')}}" class="cnopka">NEW PROJECT</a>
+
+<table>
+  <tr>
+    <td>id</td>
+    <td>name</td>
+    <td>creator</td>
+    <td>tickets</td>
+    <td>task</td>
+    <td>bug</td>
+    <td>action</td>
+  </tr>
+
+{% for project in projects %}
+
+  <tr>
+    <td>{{project.id}}</td>
+    <td><a class="line" href="{{path('project/show', {id: project.id})}}">{{project.title}}</a></td>
+    <td>{{project.creatorId}}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <a class="cnopkamini" href="{{path('project/show', {id: project.id})}}">Show</a>
+      <a class="cnopkamini" href="project_edit.php?id=<?=$id?>">Edit</a>
+      <a class="cnopkamini" href="project_del.php?id=<?=$id?>">Delete</a>
+    </td>
+  </tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,163 @@
+body {
+  font-family: arial;
+  display: grid;
+  margin: 0;
+  background-color: #edeef0;
+}
+
+h1 {
+  margin: auto;
+}
+
+h2 {
+  margin: auto;
+  margin-top: 42px;
+}
+
+h3 {
+  margin: 4px;
+}
+.viyti {
+  width: 25px;
+  height: 25px;
+  float: right;
+  padding: 8px 0;
+}
+
+table {
+
+  margin: auto;
+  max-width: 99%;
+  width: 99%;
+
+}
+
+.bgtr {
+  text-decoration: none;
+  color: #fff;
+}
+
+.line {
+  text-decoration: none;
+  color: #000;
+
+}
+
+table, td, tr {
+border-radius: 10px;
+    background: #5a8bc3;
+  text-decoration: none;
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid #edeef0;
+
+}
+
+.header{
+  position: fixed;
+  width: 100%;
+  height: 42px;
+  color: white;
+    background: #4a76a8;
+}
+
+.center {
+  margin: -4px 0 0;
+  text-align: center;
+}
+
+.page_block {
+  width: 280px;
+  padding: 25px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+  margin: 100px auto 0;
+}
+
+.ttt{
+  background: #5fb052;
+  border: 0;
+  color: #fff;
+  border-radius: 3px;
+  line-height: 20px;
+  width: 100%;
+  padding: 6px 12px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.big_text {
+  margin-bottom: 15px;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #d3d9de;
+  font-size: 14px;
+  padding: 6px 12px 8px;
+  box-sizing: border-box;
+}
+
+.IMH1vc {
+  color: #1a73e8;
+  font-family: 'Google Sans',arial,sans-serif;
+  letter-spacing: .25px;
+  text-decoration: none;
+}
+
+.cnopka {
+  border: 0px;
+  margin: 10px;
+  background: #5fb052;
+  color: #fff;
+  border-radius: 6px;
+  line-height: 20px;
+  width: 270px;
+  padding: 6px 12px 6px;
+  font-size: 22px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  text-decoration: none;
+  text-align: center;
+}
+.cnopkamini{
+  background: #5fb052;
+  border: 0px;
+  color: #fff;
+  border-radius: 3px;
+  line-height: 20px;
+  padding: 1px 12px 1px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.imgmini {
+  padding: 4px 0 0;
+  height: 27px;
+}
+
+.text{
+  float: right;
+  margin-bottom: 15px;
+  width: 350px;
+  border-radius: 3px;
+  border: 1px solid #d3d9de;
+  font-size: 14px;
+  padding: 6px 12px 8px;
+  box-sizing: border-box;
+}
+
+.block{
+  width: 500px;
+  padding: 25px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+  margin: 100px auto 50px;
+}
+.lb{
+  padding: 11px 0px 22px;
+}
+.tex {
+  font-weight: normal;
+}

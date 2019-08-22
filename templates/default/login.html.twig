@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{{ dump(params) }}
+  <form method="post">
+    <input type = "text" name = "firstname" value = "Введите имя">
+    <input type = "text" name = "lastname" value = "Введите фамилию">
+    <input type = "submit" name = "submit" value = "Отправить">
+  </form>
+{% endblock %}
