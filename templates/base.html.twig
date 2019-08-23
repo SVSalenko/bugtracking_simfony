@@ -6,8 +6,8 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <header class="header">
-  <h1><a class="bgtr" href="projects.php">BUGTRACKING</a> <?= $_SESSION['user']->name ?>
-    <a href = "viyti.php"><img src="/asset/png/viyti.png" class="viyti"></a></h1>
+  <h1><a class="bgtr" href="{{ path('projects')}}">BUGTRACKING</a>
+    <a href = "{{path('app_logout')}}"><img src="/asset/png/viyti.png" class="viyti"></a></h1>
   </header>
   <body>
     {% block body %}{% endblock %}

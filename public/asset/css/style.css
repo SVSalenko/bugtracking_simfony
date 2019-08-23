@@ -17,6 +17,12 @@ h2 {
 h3 {
   margin: 4px;
 }
+
+.delete {
+  width: 25px;
+  height: 22px;
+}
+
 .viyti {
   width: 25px;
   height: 25px;

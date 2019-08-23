@@ -1,4 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}{% endblock %}
 {% block body %}
+<div class="page_block">
+  {{ form_start(form) }}
+      {{ form_widget(form) }}
+      <button class="cnopka">{{ button_label|default('Create') }}</button>
+  {{ form_end(form) }}
+</div>
 {% endblock %}

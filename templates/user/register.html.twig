@@ -11,10 +11,13 @@
 <h2 class="tex">{{ form_label(form.email, 'Email', {'label_attr': {'class': ''}}) }}
 {{ form_widget(form.email, {'attr': {'class': 'big_text'}}) }}</h2>
 
-<h2 class="tex">{{ form_label(form.password, 'Password', {'label_attr': {'class': ''}}) }}
-{{ form_widget(form.password, {'attr': {'class': 'big_text'}}) }}</h2>
+<h2 class="tex">{{ form_label(form.plainPassword.first, 'Password', {'label_attr': {'class': ''}}) }}
+{{ form_widget(form.plainPassword.first, {'attr': {'class': 'big_text'}}) }}</h2>
 
-{{ form_widget(form.create, {'attr': {'class': 'cnopka'}}) }}
+<h2 class="tex">{{ form_label(form.plainPassword.second, 'Repeat Password', {'label_attr': {'class': ''}}) }}
+{{ form_widget(form.plainPassword.second, {'attr': {'class': 'big_text'}}) }}</h2>
+
+<button class="ttt" type="submit">Register!</button>
 
 {{ form_end(form)}}
 

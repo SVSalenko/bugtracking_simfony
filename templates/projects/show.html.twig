@@ -35,7 +35,7 @@
   <td><a href="<?= $row->file?>"><img class="imgmini" src="<?= $row->file?>"/></a></td>
   <td>
     <a class="cnopkamini" href="{{path('ticket', {id: ticket.id})}}">Show</a>
-    <a class="cnopkamini" href="ticket_edit.php?id=<?=$id?>">Edit</a>
+    <a class="cnopkamini" href="{{path('ticket_edit', {id: ticket.id})}}">Edit</a>
     <a class="cnopkamini" href="ticket_del.php?id=<?=$id?>">Delete</a></td>
 </tr>
 {% endfor %}

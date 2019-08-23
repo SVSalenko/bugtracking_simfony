@@ -23,15 +23,16 @@
 
   <tr>
     <td>{{project.id}}</td>
-    <td><a class="line" href="{{path('project/show', {id: project.id})}}">{{project.title}}</a></td>
+    <td><a class="line" href="{{path('project_show', {id: project.id})}}">{{project.title}}</a></td>
     <td>{{project.creatorId}}</td>
     <td></td>
     <td></td>
     <td></td>
     <td>
-      <a class="cnopkamini" href="{{path('project/show', {id: project.id})}}">Show</a>
-      <a class="cnopkamini" href="project_edit.php?id=<?=$id?>">Edit</a>
-      <a class="cnopkamini" href="project_del.php?id=<?=$id?>">Delete</a>
+      <a class="cnopkamini" href="{{path('project_show', {id: project.id})}}">Show</a>
+      <a class="cnopkamini" href="{{path('project_edit', {id: project.id})}}">Edit</a>
+
+      {{ include('projects/delete.html.twig') }}
     </td>
   </tr>
 

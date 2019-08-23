@@ -10,18 +10,18 @@
     {% endif %}
 
     {% if app.user %}
-        <div class="checkbox mb-3">You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
     {% endif %}
 
-    <h2 class="center">Sign in</h2>
-
-    <input type="email" value="" name="email" id="inputEmail" class="big_text" placeholder="Email" required autofocus>
-
+    <h1>Please sign in</h1>
+    <label for="inputEmail" class="">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="big_text" placeholder="Email" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" name="password" id="inputPassword" class="big_text" placeholder="Password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -34,9 +34,7 @@
         </div>
     #}
 
-    <button class="ttt" type="submit">
-        Sign in
-    </button>
+    <button class="ttt" type="submit">Sign in</button>
 </form>
 </div>
 {% endblock %}

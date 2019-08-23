@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ProjectType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProjectsController extends AbstractController
 {
@@ -22,7 +23,6 @@ class ProjectsController extends AbstractController
     {
         $projects = $this->getDoctrine()->getRepository(Projects::class)->findAll();
         return $this->render('projects/index.html.twig', [
-            'controller_name' => 'ProjectsController',
             'projects' => $projects,
         ]);
     }
@@ -50,26 +50,53 @@ class ProjectsController extends AbstractController
 
 
         return $this->render('projects/new.html.twig', [
-            'controller_name' => 'ProjectsController',
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/project/show/{id}", name="project/show")
+     * @Route("/project/show/{id}", name="project_show")
      */
-    public function show($id)
+    public function show($id, TicketsRepository $ticketsRepository): Response
     {
         $project = $this->getDoctrine()->getRepository(Projects::class)->find($id);
-        $tickets = $this->getDoctrine()->getRepository(Tickets::class)->findAll();
+        //  $tickets = $this->getDoctrine()->getRepository(Tickets::class)->findAll();
 //        if(!$project){
 //          throw $this->createNotFoundException('Project not found');
 //        }
         return $this->render('projects/show.html.twig', [
-            'controller_name' => 'ProjectsController',
             'project' => $project,
-            'tickets' => $tickets,
+            'tickets' => $ticketsRepository->findAll(),
         ]);
     }
 
+    /**
+     * @Route("{id}", name="project_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Projects $project): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($project);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('projects');
+    }
+
+    /**
+    * @Route("project/edit/{id}", name="project_edit", methods={"GET","POST"})
+    */
+   public function edit(Request $request, Projects $project): Response
+   {
+       $form = $this->createForm(ProjectType::class, $project);
+       $form->handleRequest($request);
+       if ($form->isSubmitted() && $form->isValid()) {
+           $this->getDoctrine()->getManager()->flush();
+           return $this->redirectToRoute('projects');
+       }
+       return $this->render('projects/edit.html.twig', [
+           'project' => $project,
+           'form' => $form->createView(),
+       ]);
+   }
 }
