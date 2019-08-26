@@ -20,7 +20,7 @@ class TicketType extends AbstractType
             ->add('status')
             ->add('assigned')
             ->add('description')
-            ->add('file', FileType::class)
+            ->add('file', FileType::class, ['data_class' => null])
             ->add('orig_file_name')
         ;
     }

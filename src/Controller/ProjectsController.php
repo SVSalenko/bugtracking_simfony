@@ -30,18 +30,15 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/projects/new", name="projects/new")
      */
-    public function new(Request $request)
+    public function new(Request $request): Response
     {
       $form = $this->createForm(ProjectType::class);
       $form->add('create', SubmitType::class);
-
       $form->handleRequest($request);
 
       if($form->isSubmitted() && $form->isValid()){
         $project = ($form->getData());
-
         $em = $this->getDoctrine()->getManager();
-
         $em->persist($project);
         $em->flush();
 
@@ -57,31 +54,13 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/project/show/{id}", name="project_show")
      */
-    public function show($id, TicketsRepository $ticketsRepository): Response
-    {
-        $project = $this->getDoctrine()->getRepository(Projects::class)->find($id);
-        //  $tickets = $this->getDoctrine()->getRepository(Tickets::class)->findAll();
-//        if(!$project){
-//          throw $this->createNotFoundException('Project not found');
-//        }
-        return $this->render('projects/show.html.twig', [
-            'project' => $project,
-            'tickets' => $ticketsRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route("{id}", name="project_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Projects $project): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($project);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('projects');
-    }
+     public function show($id, Projects $project, TicketsRepository $ticketsRepository): Response
+     {
+         return $this->render('projects/show.html.twig', [
+             'project' => $project,
+             'tickets' => $ticketsRepository->findBy(['project_id' => $id]),
+         ]);
+     }
 
     /**
     * @Route("project/edit/{id}", name="project_edit", methods={"GET","POST"})
@@ -99,4 +78,18 @@ class ProjectsController extends AbstractController
            'form' => $form->createView(),
        ]);
    }
+
+   /**
+    * @Route("project/delete/{id}", name="project_delete", methods={"DELETE"})
+    */
+   public function delete(Request $request, Projects $project): Response
+   {
+       if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+           $em = $this->getDoctrine()->getManager();
+           $em->remove($project);
+           $em->flush();
+       }
+       return $this->redirectToRoute('projects');
+   }
+
 }

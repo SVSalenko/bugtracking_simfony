@@ -4,17 +4,17 @@
 
 {% block body %}
 
-<div class="page_block">
+<div class="block">
 
   <h2 class="center">Edit Project</h2>
 
     {{ form_start(form) }}
 
       <h2 class="tex">{{ form_label(form.title, 'Title', {'label_attr': {'class': ''}}) }}
-      {{ form_widget(form.title, {'attr': {'class': 'big_text'}}) }}</h2>
+      {{ form_widget(form.title, {'attr': {'class': 'text'}}) }}</h2>
 
       <h2 class="tex">{{ form_label(form.creator_id, 'Сreator_id', {'label_attr': {'class': ''}}) }}
-      {{ form_widget(form.creator_id, {'attr': {'class': 'big_text'}}) }}</h2>
+      {{ form_widget(form.creator_id, {'attr': {'class': 'text'}}) }}</h2>
 
       <button class="ttt">{{ button_label|default('Edit') }}</button>
 

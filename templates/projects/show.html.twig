@@ -36,7 +36,7 @@
   <td>
     <a class="cnopkamini" href="{{path('ticket', {id: ticket.id})}}">Show</a>
     <a class="cnopkamini" href="{{path('ticket_edit', {id: ticket.id})}}">Edit</a>
-    <a class="cnopkamini" href="ticket_del.php?id=<?=$id?>">Delete</a></td>
+    {{ include('tickets/delete.html.twig') }}
 </tr>
 {% endfor %}
 </table>
