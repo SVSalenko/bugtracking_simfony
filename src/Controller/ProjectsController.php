@@ -12,7 +12,11 @@ use App\Form\ProjectType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class ProjectsController extends AbstractController
 {
 
@@ -58,7 +62,7 @@ class ProjectsController extends AbstractController
      {
          return $this->render('projects/show.html.twig', [
              'project' => $project,
-             'tickets' => $ticketsRepository->findBy(['project_id' => $id]),
+             'tickets' => $ticketsRepository->findBy(['project' => $id]),
          ]);
      }
 
@@ -80,15 +84,13 @@ class ProjectsController extends AbstractController
    }
 
    /**
-    * @Route("project/delete/{id}", name="project_delete", methods={"DELETE"})
+    * @Route("project/delete/{id}", name="project_delete")
     */
-   public function delete(Request $request, Projects $project): Response
+   public function delete(Projects $project)
    {
-       if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
            $em = $this->getDoctrine()->getManager();
            $em->remove($project);
            $em->flush();
-       }
        return $this->redirectToRoute('projects');
    }
 

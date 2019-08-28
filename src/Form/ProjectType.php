@@ -13,7 +13,8 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('creator_id')
+            ->add('creator_id', //HiddenType::class
+            )
         ;
     }
 

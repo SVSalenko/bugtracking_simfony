@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/asset/css/style.css"/>
     <title>{% block title %}{% endblock %}</title>
+  {% block header %}
   </head>
   <header class="header">
-  <h1><a class="bgtr" href="{{ path('projects')}}">BUGTRACKING</a>
+  <h1><a class="bgtr" href="{{ path('projects')}}">BUGTRACKING</a> {{ app.user.username }}
     <a href = "{{path('app_logout')}}"><img src="/asset/png/viyti.png" class="viyti"></a></h1>
   </header>
+{% endblock %}
   <body>
     {% block body %}{% endblock %}
   </body>

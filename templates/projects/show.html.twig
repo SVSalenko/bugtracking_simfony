@@ -8,7 +8,7 @@
 <h3>Tickets: </h3>
 <h3>Tasks: </h3>
 <h3>Bugs: </h3>
-<h3>Tickets:</h3>
+<h3>Tickets:{{ app.user.id }} </h3>
 
 <table>
 
@@ -35,10 +35,10 @@
   <td><a href="<?= $row->file?>"><img class="imgmini" src="<?= $row->file?>"/></a></td>
   <td>
     <a class="cnopkamini" href="{{path('ticket', {id: ticket.id})}}">Show</a>
-    <a class="cnopkamini" href="{{path('ticket_edit', {id: ticket.id})}}">Edit</a>
-    {{ include('tickets/delete.html.twig') }}
+    <a class="cnopkamini" href="{{path('ticket_edit', {id: ticket.id, project_id: project.id})}}">Edit</a>
+    <a class="cnopkamini" href="{{path('ticket_delete', {id: ticket.id, project_id: project.id})}}">Delete</a>
 </tr>
 {% endfor %}
 </table>
-<a href="{{path('/ticket/new')}}" class="cnopka">NEW TICKET</a>
+<a href="{{path('/ticket/new', {project_id: project.id})}}" class="cnopka">NEW TICKET</a>
 {% endblock %}
