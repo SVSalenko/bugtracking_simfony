@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Projects;
 use App\Entity\Tickets;
+use App\Entity\User;
 use App\Repository\ProjectsRepository;
+use App\Repository\UserRepository;
 use App\Repository\TicketsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,6 +14,7 @@ use App\Form\ProjectType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
@@ -34,14 +37,17 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/projects/new", name="projects/new")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserInterface $user): Response
     {
+      $creatorId = $user->getId();
+
       $form = $this->createForm(ProjectType::class);
       $form->add('create', SubmitType::class);
       $form->handleRequest($request);
 
       if($form->isSubmitted() && $form->isValid()){
         $project = ($form->getData());
+        $project->setCreatorId($creatorId);
         $em = $this->getDoctrine()->getManager();
         $em->persist($project);
         $em->flush();
@@ -60,7 +66,10 @@ class ProjectsController extends AbstractController
      */
      public function show($id, Projects $project, TicketsRepository $ticketsRepository): Response
      {
+         //$users = $this->getDoctrine()->getRepository(User::class)->findAll();
+
          return $this->render('projects/show.html.twig', [
+             //'user' => $user,
              'project' => $project,
              'tickets' => $ticketsRepository->findBy(['project' => $id]),
          ]);

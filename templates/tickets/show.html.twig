@@ -1,40 +1,45 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}{% endblock %}
+
 {% block body %}
+
 <h2>Ticket</h2>
 
-  <h3>Id: </h3>
-  <h3>Name: </h3>
-  <h3>Type: </h3>
-  <h3>Status: </h3>
-  <h3>Assigned: </h3>
-  <h3>Description: </h3>
-  <h3>File: <a href=""></a></h3>
+  <h3>Id: {{ticket.id}} </h3>
+  <h3>Title: {{ticket.title}} </h3>
+  <h3>Type: {{ticket.type}} </h3>
+  <h3>Status: {{ticket.status}} </h3>
+  <h3>Assigned: {{ticket.assigned}} </h3>
+  <h3>Description: {{ticket.description}} </h3>
+  <h3>File: <a href="{{ticket.file}}">{{ticket.OrigFileName}}</a></h3>
   <h3>Comments:</h3>
 
-
 <table>
-<tr>
-  <td>Comment</td>
-  <td>Creator</td>
-  <td>Action</td>
-</tr>
 
-<tr>
-  <td></td>
-  <td></td>
-  <td> <a href="" class="cnopkamini">Edit</a> </td>
-</tr>
+  <tr>
+    <td>Comment</td>
+    <td>Creator</td>
+    <td>Action</td>
+  </tr>
+
+{% for comment in comments %}
+
+  <tr>
+    <td>{{ comment.comment }}</td>
+    <td>{{ comment.creatorId }}</td>
+    <td>
+      <a href="{{path('comment_edit', {id: comment.id, ticket_id: ticket.id})}}" class="cnopkamini">Edit</a>
+      <a href="{{path('comment_delete', {id: comment.id, ticket_id: ticket.id})}}" class="cnopkamini">Delete</a>
+    </td>
+  </tr>
+
+{% endfor %}
 
 </table>
 
-<h3>Tags:
+<h3> Tags: <a href=""> </a> </h3>
 
-<a href=""></a>
+<p> <a href="{{path('comment_new', {ticket_id: ticket.id})}}" class="cnopka">NEW COMMIT</a> </p>
 
-</h3>
-<p>
-<a href="comment_new.php?id=<?=$_GET['id'];?>" class="cnopka">NEW COMMIT</a>
-<a class="cnopka" href="ticket_edit.php?id=<?=$id?>">EDIT TICKET</a>
-</p>
 {% endblock %}

@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Projects{% endblock %}
+
 {% block body %}
+
   <div class="block">
 
     <h2 class="center">Creating a new project</h2>
-    {{ form_start(form) }}
 
-    <h2 class="tex">{{ form_label(form.title, 'Title', {'label_attr': {'class': ''}}) }}
-    {{ form_widget(form.title, {'attr': {'class': 'text'}}) }}</h2>
+      {{ form_start(form) }}
 
-    <h2 class="tex">{{ form_label(form.creator_id, 'Creator id', {'label_attr': {'class': ''}}) }}
-    {{ form_widget(form.creator_id, {'attr': {'class': 'text'}}) }}</h2>
+      <h2 class="tex">{{ form_label(form.title, 'Title', {'label_attr': {'class': ''}}) }}
+      {{ form_widget(form.title, {'attr': {'class': 'text'}}) }}</h2>
 
-    {{ form_widget(form.create, {'attr': {'class': 'cnopka'}}) }}
+      {{ form_widget(form.create, {'attr': {'class': 'cnopka'}}) }}
 
-    {{ form_end(form) }}
+      {{ form_end(form) }}
 
   </div>
+
 {% endblock %}

@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
-{% block title %}{% endblock %}
-{% block body %}
-<div class="block">
-  <h2 class="center">Edit Ticket</h2>
-    {{ form_start(form) }}
 
-        {# <h2 class="tex">{{ form_label(form.project_id, 'Project id', {'label_attr': {'class': ''}}) }}
-        {{ form_widget(form.project_id, {'attr': {'class': 'text'}}) }}</h2>#}
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="block">
+
+  <h2 class="center">Edit Ticket</h2>
+
+    {{ form_start(form) }}
 
         <h2 class="tex">{{ form_label(form.title, 'Title', {'label_attr': {'class': ''}}) }}
         {{ form_widget(form.title, {'attr': {'class': 'text'}}) }}</h2>
-
-        <h2 class="tex">{{ form_label(form.creator_id, 'creator_id', {'label_attr': {'class': ''}}) }}
-        {{ form_widget(form.creator_id, {'attr': {'class': 'text'}}) }}</h2>
 
         <h2 class="tex">{{ form_label(form.type, 'Type', {'label_attr': {'class': ''}}) }}
         {{ form_widget(form.type, {'attr': {'class': 'text'}}) }}</h2>
@@ -35,5 +34,7 @@
         <button class="cnopka">{{ button_label|default('Create') }}</button>
 
     {{ form_end(form) }}
+
 </div>
+
 {% endblock %}

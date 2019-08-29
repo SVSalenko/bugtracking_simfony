@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="block">
+
+    <h2 class="center">Edit comment</h2>
+
+    {{ form_start(form) }}
+
+    <h2 class="tex">{{ form_label(form.comment, 'Comment', {'label_attr': {'class': ''}}) }}
+    {{ form_widget(form.comment, {'attr': {'class': 'text'}}) }}</h2>
+
+    {{ form_widget(form.create, {'attr': {'class': 'cnopka'}}) }}
+
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

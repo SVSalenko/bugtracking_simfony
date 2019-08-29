@@ -7,31 +7,39 @@ use App\Entity\Projects;
 use App\Form\TicketType;
 use App\Form\ProjectType;
 use App\Repository\TicketsRepository;
+use App\Repository\CommentsRepository;
 use App\Repository\ProjectsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class TicketsController extends AbstractController
 {
   /**
   * @Route("/ticket/show/{id}", name="ticket")
   */
-  public function show($id)
+  public function show($id,  CommentsRepository $CommentsRepository): Response
     {
       $ticket = $this->getDoctrine()->getRepository(Tickets::class)->find($id);
       return $this->render('tickets/show.html.twig', [
       'ticket' => $ticket,
+      'comments' => $CommentsRepository->findBy(['ticket' => $id]),
       ]);
   }
 
   /**
   * @Route("/project/{project_id}/ticket/new", name="/ticket/new", methods={"GET","POST"})
   */
-  public function new(Request $request): Response
+  public function new(Request $request, UserInterface $user): Response
   {
+    $creatorId = $user->getId();
     $projectId = $request->attributes->get('project_id');
 
     $form = $this->createForm(TicketType::class);
@@ -43,6 +51,7 @@ class TicketsController extends AbstractController
         $ticket = ($form->getData());
         $project = $this->getDoctrine()->getRepository(Projects::class)->find($projectId);
         $ticket->setProject($project);
+        $ticket->setCreatorId($creatorId);
         $em = $this->getDoctrine()->getManager();
         $em->persist($ticket);
         $em->flush();
