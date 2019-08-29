@@ -3,12 +3,16 @@
 namespace App\Form;
 
 use App\Entity\Tickets;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
+
 
 class TicketType extends AbstractType
 {
@@ -28,10 +32,11 @@ class TicketType extends AbstractType
                 'Testing' => 'testing',
                 'Done' => 'done',
                 ]])
-            ->add('assigned', ChoiceType::class, [
-              'choices' => [
-                'Sergey' => '4',
-                ]])
+            ->add('assigned', EntityType::class, [
+              'class' => User::class,
+              'choice_label' => 'username',
+              'choice_value' => 'id',
+                ])
             ->add('description')
             ->add('file', FileType::class, ['data_class' => null])
             ->add('orig_file_name')

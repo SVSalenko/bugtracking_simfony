@@ -41,7 +41,7 @@ class Tickets
     private $status;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tickets")
      */
     private $assigned;
 
@@ -151,12 +151,12 @@ class Tickets
         return $this;
     }
 
-    public function getAssigned(): ?int
+    public function getAssigned(): ?User
     {
         return $this->assigned;
     }
 
-    public function setAssigned(?int $assigned): self
+    public function setAssigned(?User $assigned): self
     {
         $this->assigned = $assigned;
 

@@ -30,7 +30,7 @@
   <td>{{ticket.creatorId}}</td>
   <td>{{ticket.type}}</td>
   <td>{{ticket.status}}</td>
-  <td><a href="{#tickets_all.php?id=<?= $row->assigned?>#}"/>{{ticket.assigned}}</a></td>
+  <td><a href="{#tickets_all.php?id=<?= $row->assigned?>#}"/>{{ticket.assigned.id}}</a></td>
   <td>{{ticket.description}}</td>
   <td><a href="{#<?= $row->file?>#}"><img class="imgmini" src="{#<?= $row->file?>#}"/></a></td>
   <td>
