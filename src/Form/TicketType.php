@@ -38,8 +38,11 @@ class TicketType extends AbstractType
               'choice_value' => 'id',
                 ])
             ->add('description')
-            ->add('file', FileType::class, ['data_class' => null])
-            ->add('orig_file_name')
+            ->add('file', FileType::class, [
+                'label' => 'Brochure (PDF file)',
+                'mapped' => false,
+                'required' => false,
+            ])
         ;
     }
 

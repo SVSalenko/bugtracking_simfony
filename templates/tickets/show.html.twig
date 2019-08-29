@@ -6,14 +6,15 @@
 
 <h2>Ticket</h2>
 
-  <h3>Id: {{ticket.id}} </h3>
-  <h3>Title: {{ticket.title}} </h3>
-  <h3>Type: {{ticket.type}} </h3>
-  <h3>Status: {{ticket.status}} </h3>
-  <h3>Assigned: {{ticket.assigned}} </h3>
-  <h3>Description: {{ticket.description}} </h3>
-  <h3>File: <a href="{{ticket.file}}">{{ticket.OrigFileName}}</a></h3>
-  <h3>Comments:</h3>
+  <h3> Id: {{ticket.id}} </h3>
+  <h3> Title: {{ticket.title}} </h3>
+  <h3> Type: {{ticket.type}} </h3>
+  <h3> Status: {{ticket.status}} </h3>
+  <h3> Assigned: {{ticket.assigned.id}} </h3>
+  <h3> Description: {{ticket.description}} </h3>
+  <h3> File: <a href="{{ asset('uploads/brochures/' ~ ticket.File) }}"> <img class="imgmini" src="{{ asset('uploads/brochures/' ~ ticket.File) }}"/> </a> </h3>
+
+<h2>Comments</h2>
 
 <table>
 

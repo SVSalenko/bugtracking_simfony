@@ -1,14 +1,19 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}{% endblock %}
+
 {% block body %}
-<h2>Project</h2>
-<h3>Id: {{project.id}}</h3>
-<h3>Name: {{project.title}}</h3>
-<h3>Creator: {{project.creatorId}}</h3>
-<h3>Tickets: </h3>
-<h3>Tasks: </h3>
-<h3>Bugs: </h3>
-<h3>Tickets: </h3>
+
+<h2> Project </h2>
+
+<h3> Id: {{project.id}}</h3>
+<h3> Name: {{project.title}}</h3>
+<h3> Creator: {{project.creatorId}}</h3>
+<h3> Tickets: </h3>
+<h3> Tasks: </h3>
+<h3> Bugs: </h3>
+
+<h2> Tickets </h2>
 
 <table>
 
@@ -23,22 +28,28 @@
   <td>file</td>
   <td>action</td>
 </tr>
+
 {% for ticket in tickets %}
+
 <tr>
   <td>{{ticket.id}}</td>
   <td>{{ticket.title}}</td>
   <td>{{ticket.creatorId}}</td>
   <td>{{ticket.type}}</td>
   <td>{{ticket.status}}</td>
-  <td><a href="{#tickets_all.php?id=<?= $row->assigned?>#}"/>{{ticket.assigned.id}}</a></td>
+  <td>{#<a href="tickets_all.php?id=<?= $row->assigned?>"/>#}{{ticket.assigned.id}}</a></td>
   <td>{{ticket.description}}</td>
-  <td><a href="{#<?= $row->file?>#}"><img class="imgmini" src="{#<?= $row->file?>#}"/></a></td>
+  <td><a href="{{ asset('uploads/brochures/' ~ ticket.File) }}"><img class="imgmini" src="{{ asset('uploads/brochures/' ~ ticket.File) }}"/></a></td>
   <td>
     <a class="cnopkamini" href="{{path('ticket', {id: ticket.id, project_id: project.id})}}">Show</a>
     <a class="cnopkamini" href="{{path('ticket_edit', {id: ticket.id, project_id: project.id})}}">Edit</a>
     <a class="cnopkamini" href="{{path('ticket_delete', {id: ticket.id, project_id: project.id})}}">Delete</a>
 </tr>
+
 {% endfor %}
+
 </table>
+
 <a href="{{path('/ticket/new', {project_id: project.id})}}" class="cnopka">NEW TICKET</a>
+
 {% endblock %}

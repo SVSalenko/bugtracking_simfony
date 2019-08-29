@@ -16,6 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -35,9 +37,9 @@ class TicketsController extends AbstractController
   }
 
   /**
-  * @Route("/project/{project_id}/ticket/new", name="/ticket/new", methods={"GET","POST"})
+  * @Route("/project/{project_id}/ticket/new", name="/ticket/new")
   */
-  public function new(Request $request, UserInterface $user): Response
+  public function new(Request $request, UserInterface $user)
   {
     $creatorId = $user->getId();
     $projectId = $request->attributes->get('project_id');
@@ -48,10 +50,30 @@ class TicketsController extends AbstractController
 
       if($form->isSubmitted() && $form->isValid())
       {
+        /*
+        * @var UploadedFile $File
+        */
+        $File = $form['file']->getData();
+          if ($File)
+          {
+            $orig_file_name = pathinfo($File->getClientOriginalName(), PATHINFO_FILENAME);
+            //$safeFile = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $orig_file_name);
+            $newFile = $orig_file_name.'-'.uniqid().'.'.$File->guessExtension();
+              try {
+                $File->move(
+                $this->getParameter('brochures_directory'),
+                $newFile
+                );
+                } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+              }
+
+          }
         $ticket = ($form->getData());
         $project = $this->getDoctrine()->getRepository(Projects::class)->find($projectId);
         $ticket->setProject($project);
         $ticket->setCreatorId($creatorId);
+        $ticket->setFile($newFile);
         $em = $this->getDoctrine()->getManager();
         $em->persist($ticket);
         $em->flush();

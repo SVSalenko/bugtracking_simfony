@@ -50,10 +50,10 @@ class Tickets
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $file;
+    // /**
+    //  * @ORM\Column(type="string", length=255, nullable=true)
+    //  */
+    // private $file;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -175,17 +175,17 @@ class Tickets
         return $this;
     }
 
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    public function setFile(?string $file): self
-    {
-        $this->file = $file;
-
-        return $this;
-    }
+    // public function getFile(): ?string
+    // {
+    //     return $this->file;
+    // }
+    //
+    // public function setFile(?string $file): self
+    // {
+    //     $this->file = $file;
+    //
+    //     return $this;
+    // }
 
     public function getOrigFileName(): ?string
     {
@@ -263,4 +263,22 @@ class Tickets
 
         return $this;
     }
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $file;
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
 }
